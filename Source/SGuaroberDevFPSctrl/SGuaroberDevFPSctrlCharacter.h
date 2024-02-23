@@ -59,7 +59,9 @@ public:
 protected:
 	virtual void BeginPlay();
 
-	void DebugMissingContext(const FString IMCName);
+#if WITH_EDITOR
+	void DebugMissingInputMappingContext(const FString IMCName);
+#endif
 
 public:
 

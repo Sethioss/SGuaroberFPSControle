@@ -55,27 +55,33 @@ void ASGuaroberDevFPSctrlCharacter::BeginPlay()
 			{
 				Subsystem->AddMappingContext(DefaultMappingContext, 0);
 			}
+#if WITH_EDITOR
 			else 
 			{
-				DebugMissingContext(TEXT("Default Mapping Context"));
+				DebugMissingInputMappingContext(TEXT("Default Mapping Context"));
 			}
+#endif
 			if (MiscMappingContext)
 			{
 				Subsystem->AddMappingContext(MiscMappingContext, 1);
 			}
+#if WITH_EDITOR
 			else
 			{
-				DebugMissingContext(TEXT("Misc Mapping Context"));
+				DebugMissingInputMappingContext(TEXT("Misc Mapping Context"));
 			}
+#endif
 		}
 	}
 
 }
 
-void ASGuaroberDevFPSctrlCharacter::DebugMissingContext(const FString IMCName)
+#if WITH_EDITOR
+void ASGuaroberDevFPSctrlCharacter::DebugMissingInputMappingContext(const FString IMCName)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 999.99, FColor::Yellow, FString::Printf(TEXT("Warning: IMC %s wasn't found. As such, it wasn't added to the character's mapping contexts"), * IMCName));
+	GEngine->AddOnScreenDebugMessage(-1, 999.99, FColor::Yellow, FString::Printf(TEXT("//IMC::WARNING// \n IMC %s wasn't found on player initialisation. It might not have been set correctly"), *IMCName));
 }
+#endif
 
 //////////////////////////////////////////////////////////////////////////// Input
 
