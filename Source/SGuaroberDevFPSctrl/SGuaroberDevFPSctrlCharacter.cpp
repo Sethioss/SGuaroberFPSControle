@@ -55,13 +55,26 @@ void ASGuaroberDevFPSctrlCharacter::BeginPlay()
 			{
 				Subsystem->AddMappingContext(DefaultMappingContext, 0);
 			}
+			else 
+			{
+				DebugMissingContext(TEXT("Default Mapping Context"));
+			}
 			if (MiscMappingContext)
 			{
 				Subsystem->AddMappingContext(MiscMappingContext, 1);
 			}
+			else
+			{
+				DebugMissingContext(TEXT("Misc Mapping Context"));
+			}
 		}
 	}
 
+}
+
+void ASGuaroberDevFPSctrlCharacter::DebugMissingContext(const FString IMCName)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 999.99, FColor::Yellow, FString::Printf(TEXT("Warning: IMC %s wasn't found. As such, it wasn't added to the character's mapping contexts"), * IMCName));
 }
 
 //////////////////////////////////////////////////////////////////////////// Input

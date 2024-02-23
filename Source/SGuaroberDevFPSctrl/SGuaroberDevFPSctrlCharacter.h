@@ -59,6 +59,8 @@ public:
 protected:
 	virtual void BeginPlay();
 
+	void DebugMissingContext(const FString IMCName);
+
 public:
 
 	/** Bool for AnimBP to switch to another animation set */
