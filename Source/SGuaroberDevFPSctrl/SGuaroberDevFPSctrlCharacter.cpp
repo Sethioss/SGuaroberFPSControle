@@ -51,7 +51,14 @@ void ASGuaroberDevFPSctrlCharacter::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+			if (DefaultMappingContext)
+			{
+				Subsystem->AddMappingContext(DefaultMappingContext, 0);
+			}
+			if (MiscMappingContext)
+			{
+				Subsystem->AddMappingContext(MiscMappingContext, 1);
+			}
 		}
 	}
 
